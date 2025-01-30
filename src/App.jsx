@@ -22,7 +22,6 @@ const App = () => {
         </Routes>
 
 
-        <AdminDashboard />
       </BrowserRouter>
     </>
   );
