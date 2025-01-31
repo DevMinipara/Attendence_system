@@ -5,7 +5,7 @@ const Navigation = () => {
     <>
       <nav>
         <div>
-          <h3 className="Logo">Logo</h3>
+           <img src="ealogo.png"></img>
         </div>
         <ul>
           <li><NavLink to={"/"}>Home</NavLink></li>

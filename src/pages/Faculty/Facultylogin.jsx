@@ -15,7 +15,7 @@ const loginBtn = () => {
           <h1>E-Authentication System with QR Code & OTP</h1>
         </header>
         <main>
-          <h2>Student Login</h2>
+          <h2>Faculty Login</h2>
             <div className="form-group">
               <label>Email:</label>
               <input

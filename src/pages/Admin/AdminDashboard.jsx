@@ -12,6 +12,7 @@ const AdminDashboard = () => {
 
   return (
     <div style={{ textAlign: "center" }}>
+      
       <h1>Admin Dashboard</h1>
       <button onClick={handleGenerateQR}>Generate QR Code</button>
       <div style={{ marginTop: "20px" }}>

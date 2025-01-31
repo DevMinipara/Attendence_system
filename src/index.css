@@ -187,3 +187,7 @@ button:hover {
   font-size: 12px;
   margin-top: -5px;
 }
+nav div img{
+  height: 45px;
+  width: 45px;
+}
