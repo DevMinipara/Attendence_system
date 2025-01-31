@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Facultylogin() {
   const [email, setEmail] = useState("");
@@ -37,9 +38,9 @@ const loginBtn = () => {
               />
             </div>
             <button onClick={loginBtn}>Login</button>
-            <a href="/register" className="register-link">
-              Register!
-            </a>
+            <NavLink to="/faculty-register" className="register-link">
+            Register!
+          </NavLink>
           
         </main>
         

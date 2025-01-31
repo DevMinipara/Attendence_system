@@ -1,6 +1,11 @@
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+    <header>
+          <h1>E-Authentication System with QR Code & OTP</h1>
+        </header>
+      <img src="home.png" className="homeimage"></img>
+    </div>
   )
 }
 

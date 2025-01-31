@@ -188,6 +188,11 @@ button:hover {
   margin-top: -5px;
 }
 nav div img{
-  height: 45px;
-  width: 45px;
+  height: 65px;
+  width: 65px;
+}
+.homeimage
+{
+    height: 100%;
+    width: 100%;
 }
