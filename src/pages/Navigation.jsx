@@ -13,6 +13,8 @@ const Navigation = () => {
           <li><NavLink to={"report"}>Report</NavLink></li>
           <li><NavLink to={"Faculty"}>Faculty</NavLink></li>
           <li><NavLink to={"Student"}>Student</NavLink></li>
+          <li><NavLink to={"StudentDashboard"}>StudentDashboard</NavLink></li>
+          <li><NavLink to={"FacultyDashboard"}>FacultyDashboard</NavLink></li>
         </ul>
       </nav>
     </>

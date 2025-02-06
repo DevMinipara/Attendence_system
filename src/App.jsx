@@ -9,6 +9,8 @@ import StudentRegister from "./pages/Student/StudentRegister";
 import Faculty from "./pages/Faculty/Faculty";
 import Student from "./pages/Student/Student";
 import Facultyregister from "./pages/Faculty/Facultyregister";
+import StudentDashboard from "./pages/Student/StudentDashboard";
+import FacultyDashboard from "./pages/Faculty/FacultyDashboard";
 
 const App = () => {
   return (
@@ -23,8 +25,9 @@ const App = () => {
           <Route path="faculty" element={<Faculty />} />
           <Route path="student" element={<Student />} />
           <Route path="register" element={<StudentRegister />} />  
-          <Route path="faculty-register" element={<Facultyregister />} />       
-          
+          <Route path="faculty-register" element={<Facultyregister />} />   
+          <Route path="StudentDashboard" element={<StudentDashboard />} />   
+          <Route path="FacultyDashborad" element={<FacultyDashboard />} /> 
           
         </Routes>
 

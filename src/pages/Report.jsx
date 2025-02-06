@@ -2,7 +2,11 @@
 const Report = () => {
   return (
       
-    <div>Report</div>
+    <div>
+       <header>
+          <h1>E-Authentication System with QR Code & OTP</h1>
+        </header>
+    </div>
    
   )
 }
