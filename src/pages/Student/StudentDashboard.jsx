@@ -55,7 +55,7 @@ export default function StudentDashboard() {
       alert("Failed to verify OTP");
     }
   };
-
+  
   return (
     <div>
       <h1>Student Dashboard</h1>
@@ -70,5 +70,6 @@ export default function StudentDashboard() {
       <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="Enter OTP" />
       <button onClick={verifyOtp}>Verify OTP</button>
     </div>
+    
   );
 }

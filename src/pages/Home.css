@@ -1,0 +1,73 @@
+/* General Styles */
+body {
+    margin: 0;
+  }
+  
+  /* Hero Section */
+  .bgimage{
+    background: url("../Assests/home.webp") no-repeat center/cover;
+    
+  }
+  .hero {
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    color: white;
+    padding: 20px;
+    
+  }
+  
+ 
+  
+  /* Main Content */
+  .content {
+    text-align: left;
+    max-width: 600px;
+  }
+  
+  .content h1 {
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .read-more-btn {
+    background: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  /* Features Section */
+  .features {
+    position: absolute;
+    right: 50px;
+    bottom: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feature {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin: 10px 0;
+    color: white;
+  }
+  
+  .icon {
+    background: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  

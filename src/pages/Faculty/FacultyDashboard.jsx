@@ -22,7 +22,7 @@ export default function FacultyDashboard() {
 
     return () => clearInterval(interval);
   }, []);
-
+  
   return (
     <div>
       <h1>Faculty Dashboard</h1>
