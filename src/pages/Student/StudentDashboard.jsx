@@ -57,9 +57,9 @@ export default function StudentDashboard() {
   };
   
   return (
-    <div>
-      <h1>Student Dashboard</h1>
-      <p>Welcome, {userName}</p>
+    <div style={{ textAlign: "center", marginTop: "100px" }}>
+      <h1>Welcome to Student Portal</h1>
+      <button onClick={() => navigate("/login")}>Student Login</button>
 
       {scanning ? (
         <QrReader delay={300} onError={handleError} onScan={handleScan} style={{ width: "300px" }} />
@@ -70,6 +70,7 @@ export default function StudentDashboard() {
       <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="Enter OTP" />
       <button onClick={verifyOtp}>Verify OTP</button>
     </div>
+    
     
   );
 }
