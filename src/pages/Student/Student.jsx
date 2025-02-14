@@ -1,9 +1,9 @@
-import StudentLogin from './StudentLogin'
+import Login from './Login'
 
 const Student = () => {
   return (
     <>
-        <StudentLogin />
+        <Login />
     </>
   )
 }

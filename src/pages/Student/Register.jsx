@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const StudentRegister = () => {
+const Register = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -110,10 +110,15 @@ const StudentRegister = () => {
                 <input type="password" name="password" placeholder="Enter Your Password" value={formData.password} onChange={handleChange} />
                 {errors.password && <p className="error">{errors.password}</p>}
 
+                <select id="dropdown" value={selectedValue} onChange={handleChange}>
+                    <option value="">Select...</option>
+                    <option value="option1">Student</option>
+                    <option value="option2">Faculty</option>
+                </select>
                 <button type="submit">Sign Up</button>
             </form>
         </div>
     );
 };
 
-export default StudentRegister;
+export default Register;

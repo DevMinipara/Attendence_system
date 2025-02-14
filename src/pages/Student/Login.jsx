@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function StudentLogin() {
+
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const loginBtn = () => {
     console.log("Login button clicked");
+    
   };
 
   return (
@@ -49,4 +51,4 @@ function StudentLogin() {
   );
 }
 
-export default StudentLogin;
+export default Login;

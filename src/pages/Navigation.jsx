@@ -5,17 +5,15 @@ const Navigation = () => {
     <>
       <nav>
         <div>
-           <img src="ealogo.png"></img>
+          <img className="logo" src="ealogo.png" alt="EA Logo" />
         </div>
         <ul>
-          <li><NavLink to={"/"}>Home</NavLink></li>
-          <li><NavLink to={"attendance"}>Attendance</NavLink></li>
-          <li><NavLink to={"report"}>Report</NavLink></li>
-          <li><NavLink to={"Faculty"}>Faculty</NavLink></li>
-          <li><NavLink to={"Student"}>Student</NavLink></li>
-          <li><NavLink to={"StudentDashboard"}>StudentDashboard</NavLink></li>
-          
-          <li><NavLink to={"AdminDashboard"}>AdminDashboard</NavLink></li>
+          <li><NavLink to={"/"}><i className="fas fa-home"></i> Home</NavLink></li>
+          <li><NavLink to={"attendance"}><i className="fas fa-clipboard-check"></i> Attendance</NavLink></li>
+          <li><NavLink to={"report"}><i className="fas fa-chart-bar"></i> Report</NavLink></li>
+          <li className="login-item">
+            <NavLink to={"login"}>Login</NavLink>
+          </li>
         </ul>
       </nav>
     </>

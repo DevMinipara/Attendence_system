@@ -1,10 +1,13 @@
-import Facultylogin from './Facultylogin'
+import React from "react";
+import Login from "../Student/Login"; // Ensure path and file exist
+
 const Faculty = () => {
   return (
-    <>
-        <Facultylogin />
-    </>
-  )
-}
+    <div>
+      <h1>Faculty Page</h1>
+      <Login />
+    </div>
+  );
+};
 
-export default Faculty
+export default Faculty;

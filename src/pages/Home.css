@@ -1,73 +1,170 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700;800&display=swap');
+
 /* General Styles */
 body {
-    margin: 0;
-  }
-  
-  /* Hero Section */
-  .bgimage{
-    background: url("../Assests/home.webp") no-repeat center/cover;
-    
-  }
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section */
+.bgimage {
+  background: url("../Assests/home.webp") no-repeat center/cover;
+  position: relative;
+  min-height: 100vh;
+}
+
+.bgimage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(4px);
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  max-width: 650px;
+  padding: 50px;
+  background: rgba(13, 40, 121, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(8, 24, 72, 0.37);
+}
+
+.content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.content h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #E0E0E0;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.content p {
+  font-size: 1.1rem;
+  color: #F5F5F5;
+  margin-bottom: 30px;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+.highlight {
+  color: #00a8e8;
+  font-weight: 600;
+}
+
+.get-started-btn {
+  background: linear-gradient(45deg, #ff8c00, #e63946);
+  color: white;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.read-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #007ea7, #003459);
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 40px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  background: rgba(13, 40, 121, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(8, 24, 72, 0.37);
+  padding: 25px 35px;
+  border-radius: 20px;
+  color: white;
+  transition: all 0.3s ease;
+  min-width: 300px;
+}
+
+.feature:hover {
+  background: rgba(13, 40, 121, 0.25);
+  transform: translateX(-10px);
+}
+
+.icon {
+  background: linear-gradient(45deg, #003459, #007ea7);
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  margin-right: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
   .hero {
-    
-    height: 100vh;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-    color: white;
     padding: 20px;
-    
   }
-  
- 
-  
-  /* Main Content */
+
   .content {
-    text-align: left;
-    max-width: 600px;
+    margin-bottom: 40px;
+    padding: 30px;
   }
-  
+
   .content h1 {
-    font-size: 50px;
-    font-weight: bold;
+    font-size: 3rem;
   }
-  
-  .read-more-btn {
-    background: blue;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    cursor: pointer;
+
+  .content h2 {
+    font-size: 1.5rem;
   }
-  
-  /* Features Section */
+
   .features {
-    position: absolute;
-    right: 50px;
-    bottom: 100px;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    padding: 20px;
   }
-  
+
   .feature {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px 20px;
-    border-radius: 30px;
-    margin: 10px 0;
-    color: white;
+    min-width: auto;
   }
-  
-  .icon {
-    background: blue;
-    color: white;
-    padding: 10px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
+}
   
