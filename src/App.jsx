@@ -24,10 +24,10 @@ const App = () => {
           <Route path="report" element={<Report />} />
           <Route path="faculty" element={<Faculty />} />
           <Route path="student" element={<Student />} />
-          <Route path="register" element={<Register />} />     
           <Route path="StudentDashboard" element={<StudentDashboard />} />   
           <Route path="FacultyDashborad" element={<FacultyDashboard />} /> 
           <Route path="AdminDashboard" element={<AdminDashboard/>} /> 
+          <Route path="register" element={<Register />} />     
         </Routes>
 
 
