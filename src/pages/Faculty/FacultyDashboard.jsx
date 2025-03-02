@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import QRCode from "qrcode.react";
 import "./FacultyDashboard.css";
+import QRCode from "react-qr-code";
+
 
 const FacultyDashboard = () => {
   const navigate = useNavigate();
@@ -10,8 +11,7 @@ const FacultyDashboard = () => {
   const [showQR, setShowQR] = useState(false);
   const [showAttendance, setShowAttendance] = useState(false);
   const [qrData, setQrData] = useState("");
-
-  // Sample attendance data (replace with actual data from backend)
+  const [timestamp, setTimestamp] = useState(null);
   const [attendanceHistory] = useState([
     {
       date: "2024-03-10",
@@ -27,25 +27,29 @@ const FacultyDashboard = () => {
       present: 52,
       total: 60,
     },
-    // Add more attendance records
   ]);
+  const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString());
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDateTime(new Date().toLocaleString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // ✅ Fix: Correct function for QR generation
   const handleGenerateQR = () => {
-    if (!subject) {
-      alert("Please enter subject name");
+    if (!subject.trim()) {
+      alert("Please enter a subject name");
       return;
     }
-    const currentDate = new Date().toLocaleDateString();
-    const currentTime = new Date().toLocaleTimeString();
-    const qrValue = JSON.stringify({
-      subject,
-      date: currentDate,
-      time: currentTime,
-      facultyName,
-    });
+  
+    const qrValue = `https://your-attendance-system.com/verify?subject=${encodeURIComponent(subject)}`;
+    const staticDateTime = new Date().toLocaleString();
     setQrData(qrValue);
     setShowQR(true);
     setShowAttendance(false);
+    setTimestamp(staticDateTime);
   };
 
   const handleShowAttendance = () => {
@@ -110,11 +114,9 @@ const FacultyDashboard = () => {
           <div className="qr-display">
             <h2>QR Code for {subject}</h2>
             <div className="qr-code">
-              <QRCode value={qrData} size={256} level="H" />
-            </div>
-            <p className="qr-info">
-              Generated on: {new Date().toLocaleString()}
-            </p>
+              {qrData ? <QRCode value={qrData} size={200} /> : <p>Please enter a subject to generate a QR code.</p>}
+            </div> 
+            <p className="qr-info">Generated on: <strong>{timestamp}</strong></p>
           </div>
         )}
 
@@ -139,7 +141,7 @@ const FacultyDashboard = () => {
                       <td>{record.time}</td>
                       <td>{record.subject}</td>
                       <td>{record.present}/{record.total}</td>
-                      <td>{((record.present/record.total) * 100).toFixed(1)}%</td>
+                      <td>{((record.present / record.total) * 100).toFixed(1)}%</td>
                     </tr>
                   ))}
                 </tbody>
@@ -147,6 +149,7 @@ const FacultyDashboard = () => {
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
