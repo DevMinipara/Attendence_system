@@ -85,7 +85,7 @@ const FacultyDashboard = () => {
       {/* Main Content */}
       <div className="dashboard-content">
         <div className="welcome-section">
-          <h1>Welcome, {facultyName}!</h1>
+          <h1>Welcome, {facultyName} </h1>
           <p>Generate QR code for attendance or view attendance history</p>
         </div>
 

@@ -67,7 +67,7 @@ const Home = () => {
           data backup & recovery</b> make it a <b>reliable, scalable, and secure
           solution</b> for educational institutions of all sizes.
         </p>
-        <button>How to Use?</button>
+        
         <button onClick={handleSignUp}>Sign Up</button>
       </div>
       <footer className="footer">

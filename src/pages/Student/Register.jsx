@@ -12,7 +12,6 @@ const Register = () => {
         course: "",
         year: "",
         phone: "",
-        address: "",
         password: ""
     });
 
@@ -43,7 +42,6 @@ const Register = () => {
         if (!formData.course) newErrors.course = "Enter your course";
         if (!formData.year) newErrors.year = "Select your year";
         if (!patterns.phone.test(formData.phone)) newErrors.phone = "Enter a valid 10-digit phone number";
-        if (!formData.address) newErrors.address = "Enter your address";
         if (!patterns.password.test(formData.password)) newErrors.password = "Password must be at least 6 characters";
 
         setErrors(newErrors);
@@ -212,20 +210,6 @@ const Register = () => {
                                 onChange={handleChange}
                             />
                             {errors.phone && <span className="error">{errors.phone}</span>}
-                        </div>
-
-                        <div className="form-group">
-                            <label>
-                                <i className="fas fa-map-marker-alt"></i>
-                                <span>Address</span>
-                            </label>
-                            <textarea
-                                name="address"
-                                placeholder="Enter your address"
-                                value={formData.address}
-                                onChange={handleChange}
-                            />
-                            {errors.address && <span className="error">{errors.address}</span>}
                         </div>
 
                         <div className="form-group">
