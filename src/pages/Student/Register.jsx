@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -52,6 +54,7 @@ const Register = () => {
         e.preventDefault();
         if (validateForm()) {
             setSuccessMessage("Registration Successful!");
+            // Reset form
             setFormData({
                 name: "",
                 email: "",
@@ -64,59 +67,183 @@ const Register = () => {
                 password: ""
             });
             setErrors({});
+            // Navigate to login page after successful registration
+            setTimeout(() => {
+                navigate('/login');
+            }, 2000);
         }
     };
 
+    const handleLogin = () => {
+        navigate('/login');
+    };
+
     return (
-        <div className="register-container">
-            <h2>Student Register</h2>
-            {successMessage && <p className="success">{successMessage}</p>}
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="name" placeholder="Enter Your Name" value={formData.name} onChange={handleChange} />
-                {errors.name && <p className="error">{errors.name}</p>}
+        <div className="register-page">
+            <div className="register-container">
+                <div className="register-left">
+                    <div className="register-header">
+                        <h2>Create Account</h2>
+                        <p>Please fill in the details to register</p>
+                    </div>
+                    {successMessage && <div className="success-message">{successMessage}</div>}
+                    <form onSubmit={handleSubmit} className="register-form">
+                        <div className="form-group">
+                            <label>
+                                <i className="fas fa-user"></i>
+                                <span>Full Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Enter your name"
+                                value={formData.name}
+                                onChange={handleChange}
+                            />
+                            {errors.name && <span className="error">{errors.name}</span>}
+                        </div>
 
-                <input type="email" name="email" placeholder="Enter Your Email" value={formData.email} onChange={handleChange} />
-                {errors.email && <p className="error">{errors.email}</p>}
+                        <div className="form-group">
+                            <label>
+                                <i className="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                            {errors.email && <span className="error">{errors.email}</span>}
+                        </div>
 
-                <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
-                {errors.dob && <p className="error">{errors.dob}</p>}
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label>
+                                    <i className="fas fa-calendar"></i>
+                                    <span>Date of Birth</span>
+                                </label>
+                                <input
+                                    type="date"
+                                    name="dob"
+                                    value={formData.dob}
+                                    onChange={handleChange}
+                                />
+                                {errors.dob && <span className="error">{errors.dob}</span>}
+                            </div>
 
-                <select name="gender" value={formData.gender} onChange={handleChange}>
-                    <option value="">Select Your Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-                {errors.gender && <p className="error">{errors.gender}</p>}
+                            <div className="form-group">
+                                <label>
+                                    <i className="fas fa-venus-mars"></i>
+                                    <span>Gender</span>
+                                </label>
+                                <select name="gender" value={formData.gender} onChange={handleChange}>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                {errors.gender && <span className="error">{errors.gender}</span>}
+                            </div>
+                        </div>
 
-                <input type="text" name="course" placeholder="Enter Your course" value={formData.course} onChange={handleChange} />
-                {errors.course && <p className="error">{errors.course}</p>}
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label>
+                                    <i className="fas fa-graduation-cap"></i>
+                                    <span>Course</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="course"
+                                    placeholder="Enter your course"
+                                    value={formData.course}
+                                    onChange={handleChange}
+                                />
+                                {errors.course && <span className="error">{errors.course}</span>}
+                            </div>
 
-                <select name="year" value={formData.year} onChange={handleChange}>
-                    <option value="">Select Your Year</option>
-                    <option value="1st">1st Year</option>
-                    <option value="2nd">2nd Year</option>
-                    <option value="3rd">3rd Year</option>
-                    <option value="4th">4th Year</option>
-                </select>
-                {errors.year && <p className="error">{errors.year}</p>}
+                            <div className="form-group">
+                                <label>
+                                    <i className="fas fa-clock"></i>
+                                    <span>Year</span>
+                                </label>
+                                <select name="year" value={formData.year} onChange={handleChange}>
+                                    <option value="">Select Year</option>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
+                                {errors.year && <span className="error">{errors.year}</span>}
+                            </div>
+                        </div>
 
-                <input type="text" name="phone" placeholder="Enter Your Phone No" value={formData.phone} onChange={handleChange} />
-                {errors.phone && <p className="error">{errors.phone}</p>}
+                        <div className="form-group">
+                            <label>
+                                <i className="fas fa-phone"></i>
+                                <span>Phone Number</span>
+                            </label>
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
+                            {errors.phone && <span className="error">{errors.phone}</span>}
+                        </div>
 
-                <input type="text" name="address" placeholder="Enter Your Address" value={formData.address} onChange={handleChange} />
-                {errors.address && <p className="error">{errors.address}</p>}
+                        <div className="form-group">
+                            <label>
+                                <i className="fas fa-map-marker-alt"></i>
+                                <span>Address</span>
+                            </label>
+                            <textarea
+                                name="address"
+                                placeholder="Enter your address"
+                                value={formData.address}
+                                onChange={handleChange}
+                            />
+                            {errors.address && <span className="error">{errors.address}</span>}
+                        </div>
 
-                <input type="password" name="password" placeholder="Enter Your Password" value={formData.password} onChange={handleChange} />
-                {errors.password && <p className="error">{errors.password}</p>}
+                        <div className="form-group">
+                            <label>
+                                <i className="fas fa-lock"></i>
+                                <span>Password</span>
+                            </label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Create a password"
+                                value={formData.password}
+                                onChange={handleChange}
+                            />
+                            {errors.password && <span className="error">{errors.password}</span>}
+                        </div>
 
-                <select id="dropdown" value={selectedValue} onChange={handleChange}>
-                    <option value="">Select...</option>
-                    <option value="option1">Student</option>
-                    <option value="option2">Faculty</option>
-                </select>
-                <button type="submit">Sign Up</button>
-            </form>
+                        <button type="submit" className="register-btn">
+                            <span>Register Now</span>
+                            <i className="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div className="register-footer">
+                        <p>Already have an account?</p>
+                        <button onClick={handleLogin} className="login-link">
+                            Login Here
+                        </button>
+                    </div>
+                </div>
+                <div className="register-right">
+                    <div className="register-image">
+                        <img src="/path-to-your-image.svg" alt="Register" />
+                        <h3>AttendEase</h3>
+                        <p>Join our Smart Attendance Management System</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

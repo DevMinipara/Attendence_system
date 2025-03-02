@@ -1,6 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate('login');
+  };
+
   return (
     <>
       <nav>
@@ -8,11 +14,12 @@ const Navigation = () => {
           <img className="logo" src="ealogo.png" alt="EA Logo" />
         </div>
         <ul>
-          <li><NavLink to={"/"}><i className="fas fa-home"></i> Home</NavLink></li>
-          <li><NavLink to={"attendance"}><i className="fas fa-clipboard-check"></i> Attendance</NavLink></li>
-          <li><NavLink to={"report"}><i className="fas fa-chart-bar"></i> Report</NavLink></li>
+          <li><NavLink to={"/"}><i className="fas fa-home"></i> QR Scanner </NavLink></li>
+          <li><NavLink to={"/"}><i className="fas fa-home"></i> Dashboard</NavLink></li>
           <li className="login-item">
-            <NavLink to={"login"}>Login</NavLink>
+            <NavLink to={"login"}>
+              <i className="fas fa-sign-in-alt"></i> Login
+            </NavLink>
           </li>
         </ul>
       </nav>
