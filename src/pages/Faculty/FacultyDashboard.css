@@ -1,0 +1,157 @@
+.App {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .input-section, .qr-section {
+    margin: 20px;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+
+  .qr-generator-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .subject-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .subject-input:focus {
+    border-color: #003459;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 52, 89, 0.1);
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .generate-btn, .history-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .generate-btn {
+    background: #003459;
+    color: white;
+  }
+
+  .history-btn {
+    background: #f0f2f5;
+    color: #333;
+  }
+
+  .generate-btn:hover, .history-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .qr-display {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .qr-code {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: white;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .qr-info {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .attendance-history {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .attendance-table {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e1e1e1;
+  }
+
+  th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+  }
+
+  tr:hover {
+    background: #f8f9fa;
+  }
+
+  @media (max-width: 768px) {
+    .action-buttons {
+      flex-direction: column;
+    }
+
+    .qr-code {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .qr-code canvas {
+      max-width: 100%;
+      height: auto;
+    }
+  }

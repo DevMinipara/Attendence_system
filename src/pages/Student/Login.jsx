@@ -4,10 +4,20 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("student");
   const navigate = useNavigate();
 
   const loginBtn = () => {
-    console.log("Login button clicked");
+    if (!email || !password) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    if (userType === "student") {
+      navigate('/StudentDashboard');
+    } else if (userType === "faculty") {
+      navigate('/FacultyDashboard');
+    }
   };
 
   const handleRegister = () => {
@@ -23,6 +33,32 @@ function Login() {
             <p>Please login to access your account</p>
           </div>
           <form className="login-form">
+            <div className="form-group radio-group">
+              <label className="radio-label">Login as:</label>
+              <div className="radio-options">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="student"
+                    checked={userType === "student"}
+                    onChange={(e) => setUserType(e.target.value)}
+                  />
+                  <span>Student</span>
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="faculty"
+                    checked={userType === "faculty"}
+                    onChange={(e) => setUserType(e.target.value)}
+                  />
+                  <span>Faculty</span>
+                </label>
+              </div>
+            </div>
+
             <div className="form-group">
               <label>
                 <i className="fas fa-envelope"></i>
@@ -57,11 +93,7 @@ function Login() {
           </form>
           <div className="login-footer">
             <p>Don't have an account?</p>
-            <button 
-              onClick={handleRegister} 
-              className="register-btn"
-              type="button"
-            >
+            <button onClick={handleRegister} className="register-btn">
               Create Account
             </button>
           </div>

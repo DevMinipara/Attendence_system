@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
+        userType: "student",
         name: "",
         email: "",
         dob: "",
@@ -49,28 +50,20 @@ const Register = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    // Handle form submission
+    // Handle form submission with navigation
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
             setSuccessMessage("Registration Successful!");
-            // Reset form
-            setFormData({
-                name: "",
-                email: "",
-                dob: "",
-                gender: "",
-                course: "",
-                year: "",
-                phone: "",
-                address: "",
-                password: ""
-            });
-            setErrors({});
-            // Navigate to login page after successful registration
+            
+            // Navigate based on user type after a short delay
             setTimeout(() => {
-                navigate('/login');
-            }, 2000);
+                if (formData.userType === "student") {
+                    navigate('/StudentDashboard');
+                } else if (formData.userType === "faculty") {
+                    navigate('/FacultyDashboard');
+                }
+            }, 1500); // 1.5 second delay to show success message
         }
     };
 
@@ -88,6 +81,32 @@ const Register = () => {
                     </div>
                     {successMessage && <div className="success-message">{successMessage}</div>}
                     <form onSubmit={handleSubmit} className="register-form">
+                        <div className="form-group radio-group">
+                            <label className="radio-label">Register as:</label>
+                            <div className="radio-options">
+                                <label className="radio-option">
+                                    <input
+                                        type="radio"
+                                        name="userType"
+                                        value="student"
+                                        checked={formData.userType === "student"}
+                                        onChange={handleChange}
+                                    />
+                                    <span>Student</span>
+                                </label>
+                                <label className="radio-option">
+                                    <input
+                                        type="radio"
+                                        name="userType"
+                                        value="faculty"
+                                        checked={formData.userType === "faculty"}
+                                        onChange={handleChange}
+                                    />
+                                    <span>Faculty</span>
+                                </label>
+                            </div>
+                        </div>
+
                         <div className="form-group">
                             <label>
                                 <i className="fas fa-user"></i>
