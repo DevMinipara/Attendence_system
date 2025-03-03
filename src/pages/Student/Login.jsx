@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("student"); // Default user type
   const navigate = useNavigate();
 
   const loginBtn = () => {
@@ -12,12 +13,22 @@ function Login() {
       return;
     }
 
-    // Assuming default user type is student
-    navigate('/StudentDashboard');
+    // Navigate based on user type
+    if (userType === "student") {
+      navigate('/StudentDashboard');
+    } else if (userType === "faculty") {
+      navigate('/FacultyDashboard');
+    } else if (userType === "admin") {
+      navigate('/AdminDashboard');
+    }
   };
 
   const handleRegister = () => {
     navigate('/register');
+  };
+
+  const handleUserTypeChange = (e) => {
+    setUserType(e.target.value);
   };
 
   return (
@@ -56,6 +67,44 @@ function Login() {
               />
               <span className="forgot-password">Forgot Password?</span>
             </div>
+
+            {/* Radio buttons for user type */}
+            <div className="form-group radio-group">
+              <label className="radio-label">Login as:</label>
+              <div className="radio-options">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="student"
+                    checked={userType === "student"}
+                    onChange={handleUserTypeChange}
+                  />
+                  <span>Student</span>
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="faculty"
+                    checked={userType === "faculty"}
+                    onChange={handleUserTypeChange}
+                  />
+                  <span>Faculty</span>
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="admin"
+                    checked={userType === "admin"}
+                    onChange={handleUserTypeChange}
+                  />
+                  <span>Admin</span>
+                </label>
+              </div>
+            </div>
+
             <button type="button" onClick={loginBtn} className="login-btn">
               <span>Login Now</span>
               <i className="fas fa-arrow-right"></i>

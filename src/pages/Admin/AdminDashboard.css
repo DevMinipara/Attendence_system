@@ -1,0 +1,77 @@
+.admin-nav {
+  background-color: #003459; /* Dark blue background */
+  padding: 10px 20px; /* Adjust padding for height */
+  display: flex; /* Flexbox for layout */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between logo and nav items */
+}
+
+.nav-logo {
+  height: 50px; /* Set height for the logo to match Home page */
+  margin-right: 20px; /* Space between logo and nav items */
+}
+
+.admin-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px; /* Space between nav items */
+}
+
+.admin-nav li {
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.admin-nav li:hover {
+  color: #ff7b00; /* Change color on hover */
+}
+
+.admin-nav button {
+  background-color: #ff7b00; /* Orange background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-nav button:hover {
+  background-color: #ff9100; /* Lighter orange on hover */
+}
+
+.dashboard-content {
+  padding: 20px;
+}
+
+.admin-footer {
+  background-color: #001f3f; /* Dark background for the footer */
+  color: white; /* Text color */
+  padding: 20px; /* Padding around the footer */
+  text-align: center; /* Center text */
+  position: relative; /* Positioning for footer */
+  bottom: 0; /* Stick to the bottom */
+  width: 100%; /* Full width */
+}
+
+.footer-content {
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center items vertically */
+}
+
+.footer-button {
+  background: none; /* No background */
+  border: none; /* No border */
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor */
+  display: flex; /* Flexbox for icon and text */
+  align-items: center; /* Center items vertically */
+}
+
+.footer-icon {
+  width: 20px; /* Set width for the icon */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 8px; /* Space between icon and text */
+} 
