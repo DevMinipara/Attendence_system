@@ -361,7 +361,7 @@ nav ul li.login-item i {
 }
 
 .login-footer {
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -574,6 +574,8 @@ nav ul li.login-item i {
     justify-content: center;
     gap: 10px;
     transition: all 0.3s ease;
+    display: inline-block; 
+    margin-top: 10px;
 }
 
 .register-btn:hover {

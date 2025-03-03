@@ -7,8 +7,6 @@ const Register = () => {
         userType: "student",
         name: "",
         email: "",
-        dob: "",
-        gender: "",
         course: "",
         year: "",
         phone: "",
@@ -37,8 +35,6 @@ const Register = () => {
         
         if (!patterns.name.test(formData.name)) newErrors.name = "Enter a valid name (min 3 letters)";
         if (!patterns.email.test(formData.email)) newErrors.email = "Enter a valid email";
-        if (!formData.dob) newErrors.dob = "Select your date of birth";
-        if (!formData.gender) newErrors.gender = "Select your gender";
         if (!formData.course) newErrors.course = "Enter your course";
         if (!formData.year) newErrors.year = "Select your year";
         if (!patterns.phone.test(formData.phone)) newErrors.phone = "Enter a valid 10-digit phone number";
@@ -133,36 +129,6 @@ const Register = () => {
                                 onChange={handleChange}
                             />
                             {errors.email && <span className="error">{errors.email}</span>}
-                        </div>
-
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label>
-                                    <i className="fas fa-calendar"></i>
-                                    <span>Date of Birth</span>
-                                </label>
-                                <input
-                                    type="date"
-                                    name="dob"
-                                    value={formData.dob}
-                                    onChange={handleChange}
-                                />
-                                {errors.dob && <span className="error">{errors.dob}</span>}
-                            </div>
-
-                            <div className="form-group">
-                                <label>
-                                    <i className="fas fa-venus-mars"></i>
-                                    <span>Gender</span>
-                                </label>
-                                <select name="gender" value={formData.gender} onChange={handleChange}>
-                                    <option value="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                {errors.gender && <span className="error">{errors.gender}</span>}
-                            </div>
                         </div>
 
                         <div className="form-row">

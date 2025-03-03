@@ -2,10 +2,14 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 const Home = () => {
-  const navigator = useNavigate()
+  const navigate = useNavigate()
+
+  const handleGetStarted = () => {
+    navigate('/StudentDashboard')
+  }
 
   const handleSignUp = () => {
-    navigator('register')
+    navigate('register')
   }
   return (
     <>
@@ -24,7 +28,9 @@ const Home = () => {
             <p>
               <span className="highlight">One scan</span> is all it takes.
             </p>
-            <button className="get-started-btn">Get Started</button>
+            <button className="get-started-btn" onClick={handleGetStarted}>
+              Get Started
+            </button>
           </div>
 
           <div className="features">
