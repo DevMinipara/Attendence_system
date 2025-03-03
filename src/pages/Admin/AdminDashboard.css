@@ -1,19 +1,35 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif; /* Use a clean font */
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Light background for contrast */
+}
+
+/* Admin Dashboard Container */
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full height */
+}
+
+/* Navigation Bar */
 .admin-nav {
   background-color: #003459; /* Dark blue background */
-  padding: 10px 20px; /* Adjust padding for height */
+  padding: 15px 20px; /* Padding for the nav */
   display: flex; /* Flexbox for layout */
   align-items: center; /* Center items vertically */
   justify-content: space-between; /* Space between logo and nav items */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .nav-logo {
-  height: 50px; /* Set height for the logo to match Home page */
-  margin-right: 20px; /* Space between logo and nav items */
+  height: 50px; /* Set height for the logo */
 }
 
 .admin-nav ul {
-  list-style: none;
-  display: flex;
+  list-style: none; /* Remove bullet points */
+  display: flex; /* Flexbox for nav items */
   gap: 30px; /* Space between nav items */
 }
 
@@ -27,24 +43,50 @@
   color: #ff7b00; /* Change color on hover */
 }
 
-.admin-nav button {
-  background-color: #ff7b00; /* Orange background */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.admin-nav button:hover {
-  background-color: #ff9100; /* Lighter orange on hover */
-}
-
+/* Dashboard Content */
 .dashboard-content {
-  padding: 20px;
+  flex: 1; /* Take up remaining space */
+  padding: 20px; /* Padding around content */
+  background-color: #ffffff; /* White background for content area */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  margin: 20px; /* Margin around content */
 }
 
+/* Form Styles */
+h2 {
+  color: #003459; /* Dark blue for headings */
+}
+
+form {
+  display: flex;
+  flex-direction: column; /* Stack inputs vertically */
+  margin-bottom: 20px; /* Space between forms */
+}
+
+input {
+  padding: 10px; /* Padding for inputs */
+  margin: 10px 0; /* Margin for spacing */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+}
+
+button {
+  padding: 10px; /* Padding for buttons */
+  background-color: #003459; /* Dark blue background */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s; /* Smooth background transition */
+}
+
+button:hover {
+  background-color: #ff7b00; /* Change background on hover */
+}
+
+/* Footer Styles */
 .admin-footer {
   background-color: #001f3f; /* Dark background for the footer */
   color: white; /* Text color */
@@ -74,4 +116,16 @@
   width: 20px; /* Set width for the icon */
   height: auto; /* Maintain aspect ratio */
   margin-right: 8px; /* Space between icon and text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-nav ul {
+    flex-direction: column; /* Stack nav items vertically on small screens */
+    gap: 10px; /* Reduce gap */
+  }
+
+  .dashboard-content {
+    margin: 10px; /* Reduce margin on small screens */
+  }
 } 
