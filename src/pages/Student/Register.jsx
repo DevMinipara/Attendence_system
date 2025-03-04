@@ -75,31 +75,7 @@ const Register = () => {
                     </div>
                     {successMessage && <div className="success-message">{successMessage}</div>}
                     <form onSubmit={handleSubmit} className="register-form">
-                        <div className="form-group radio-group">
-                            <label className="radio-label">Register as:</label>
-                            <div className="radio-options">
-                                <label className="radio-option">
-                                    <input
-                                        type="radio"
-                                        name="userType"
-                                        value="student"
-                                        checked={formData.userType === "student"}
-                                        onChange={handleChange}
-                                    />
-                                    <span>Student</span>
-                                </label>
-                                <label className="radio-option">
-                                    <input
-                                        type="radio"
-                                        name="userType"
-                                        value="faculty"
-                                        checked={formData.userType === "faculty"}
-                                        onChange={handleChange}
-                                    />
-                                    <span>Faculty</span>
-                                </label>
-                            </div>
-                        </div>
+                       
 
                         <div className="form-group">
                             <label>
