@@ -51,6 +51,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                style={{ overflow: 'hidden', resize: 'none' }}
               />
             </div>
             <div className="form-group">
@@ -64,12 +65,13 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                style={{ overflow: 'hidden', resize: 'none' }}
               />
               <span className="forgot-password">Forgot Password?</span>
             </div>
 
             {/* Radio buttons for user type */}
-            <div className="form-group radio-group">
+            <div className="form-group radio-group" style={{ overflow: 'hidden' }}>
               <label className="radio-label">Login as:</label>
               <div className="radio-options">
                 <label className="radio-option">

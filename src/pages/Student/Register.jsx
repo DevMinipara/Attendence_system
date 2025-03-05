@@ -74,9 +74,8 @@ const Register = () => {
                         <p>Please fill in the details to register</p>
                     </div>
                     {successMessage && <div className="success-message">{successMessage}</div>}
+                    
                     <form onSubmit={handleSubmit} className="register-form">
-                       
-
                         <div className="form-group">
                             <label>
                                 <i className="fas fa-user"></i>
