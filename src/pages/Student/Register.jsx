@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -46,7 +47,10 @@ const Register = () => {
 
     // Handle form submission with navigation
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        axios.post('',{name,email,course,year,phone,password})
+        .then(result => console.log(result))
+        .catch(err=> console.log(err))
         if (validateForm()) {
             setSuccessMessage("Registration Successful!");
             
