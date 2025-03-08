@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Register.css";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -8,6 +9,7 @@ const Register = () => {
         userType: "student",
         name: "",
         email: "",
+        enrollmentNo: "",
         course: "",
         year: "",
         phone: "",
@@ -16,57 +18,93 @@ const Register = () => {
 
     const [successMessage, setSuccessMessage] = useState("");
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Regex patterns for validation
+    // Validation patterns
     const patterns = {
         name: /^[A-Za-z ]{3,}$/,
         email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/,
+        enrollmentNo: /^[0-9]{8}$/,
         phone: /^[0-9]{10}$/,
-        password: /^[A-Za-z0-9@#$%^&+=]{6,}$/
+        password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
     };
 
-    // Handle input change
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    // Validate form
-    const validateForm = () => {
-        let newErrors = {};
-        
-        if (!patterns.name.test(formData.name)) newErrors.name = "Enter a valid name (min 3 letters)";
-        if (!patterns.email.test(formData.email)) newErrors.email = "Enter a valid email";
-        if (!formData.course) newErrors.course = "Enter your course";
-        if (!formData.year) newErrors.year = "Select your year";
-        if (!patterns.phone.test(formData.phone)) newErrors.phone = "Enter a valid 10-digit phone number";
-        if (!patterns.password.test(formData.password)) newErrors.password = "Password must be at least 6 characters";
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    // Handle form submission with navigation
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('',{name,email,course,year,phone,password})
-        .then(result => console.log(result))
-        .catch(err=> console.log(err))
-        if (validateForm()) {
-            setSuccessMessage("Registration Successful!");
-            
-            // Navigate based on user type after a short delay
-            setTimeout(() => {
-                if (formData.userType === "student") {
-                    navigate('/StudentDashboard');
-                } else if (formData.userType === "faculty") {
-                    navigate('/FacultyDashboard');
-                }
-            }, 1500); // 1.5 second delay to show success message
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        // Clear error for this field when user starts typing
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: "" }));
         }
     };
 
-    const handleLogin = () => {
-        navigate('/login');
+    const validateForm = () => {
+        let newErrors = {};
+        let isValid = true;
+
+        if (!patterns.name.test(formData.name)) {
+            newErrors.name = "Name must be at least 3 letters long";
+            isValid = false;
+        }
+
+        if (!patterns.email.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address";
+            isValid = false;
+        }
+
+        if (!patterns.enrollmentNo.test(formData.enrollmentNo)) {
+            newErrors.enrollmentNo = "Enrollment number must be 8 digits";
+            isValid = false;
+        }
+
+        if (!formData.course.trim()) {
+            newErrors.course = "Course is required";
+            isValid = false;
+        }
+
+        if (!formData.year) {
+            newErrors.year = "Please select your year";
+            isValid = false;
+        }
+
+        if (!patterns.phone.test(formData.phone)) {
+            newErrors.phone = "Phone number must be 10 digits";
+            isValid = false;
+        }
+
+        if (!patterns.password.test(formData.password)) {
+            newErrors.password = "Password must be at least 8 characters with letters and numbers";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSuccessMessage("");
+
+        if (validateForm()) {
+            try {
+                const response = await axios.post('http://localhost:5000/register', formData);
+                
+                if (response.data.success) {
+                    setSuccessMessage("Registration successful! Redirecting to login...");
+                    setTimeout(() => {
+                        navigate('/login');
+                    }, 2000);
+                }
+            } catch (error) {
+                if (error.response?.data?.error) {
+                    setErrors({ submit: error.response.data.error });
+                } else {
+                    setErrors({ submit: "Registration failed. Please try again." });
+                }
+            }
+        }
+        setIsSubmitting(false);
     };
 
     return (
@@ -77,22 +115,52 @@ const Register = () => {
                         <h2>Create Account</h2>
                         <p>Please fill in the details to register</p>
                     </div>
-                    {successMessage && <div className="success-message">{successMessage}</div>}
-                    
+
+                    {successMessage && (
+                        <div className="success-message">
+                            <i className="fas fa-check-circle"></i>
+                            {successMessage}
+                        </div>
+                    )}
+
+                    {errors.submit && (
+                        <div className="error-message">
+                            <i className="fas fa-exclamation-circle"></i>
+                            {errors.submit}
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit} className="register-form">
                         <div className="form-group">
                             <label>
                                 <i className="fas fa-user"></i>
-                                <span>Full Name</span>
+                                Full Name
                             </label>
                             <input
                                 type="text"
                                 name="name"
-                                placeholder="Enter your name"
                                 value={formData.name}
                                 onChange={handleChange}
+                                className={errors.name ? 'error-input' : ''}
+                                placeholder="Enter your full name"
                             />
-                            {errors.name && <span className="error">{errors.name}</span>}
+                            {errors.name && <span className="error-text">{errors.name}</span>}
+                        </div>
+
+                        <div className="form-group">
+                            <label>
+                                <i className="fas fa-id-card"></i>
+                                <span>Enrollment Number</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="enrollmentNo"
+                                placeholder="Enter your enrollment number"
+                                value={formData.enrollmentNo}
+                                onChange={handleChange}
+                                maxLength="8"
+                            />
+                            {errors.enrollmentNo && <span className="error">{errors.enrollmentNo}</span>}
                         </div>
 
                         <div className="form-group">
@@ -172,17 +240,21 @@ const Register = () => {
                             {errors.password && <span className="error">{errors.password}</span>}
                         </div>
 
-                        <button type="submit" className="register-btn">
-                            <span>Register Now</span>
-                            <i className="fas fa-arrow-right"></i>
+                        <button 
+                            type="submit" 
+                            className="register-btn"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? (
+                                <span className="loading-spinner"></span>
+                            ) : (
+                                <>
+                                    <span>Register Now</span>
+                                    <i className="fas fa-arrow-right"></i>
+                                </>
+                            )}
                         </button>
                     </form>
-                    <div className="register-footer">
-                        <p>Already have an account?</p>
-                        <button onClick={handleLogin} className="login-link">
-                            Login Here
-                        </button>
-                    </div>
                 </div>
                 <div className="register-right">
                     <div className="register-image">

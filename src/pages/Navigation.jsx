@@ -14,7 +14,7 @@ const Navigation = () => {
           <img className="logo" src="ealogo.png" alt="EA Logo" />
         </div>
         <ul>
-          <li><NavLink to={"/"}><i className="fas fa-home"></i> QR Scanner </NavLink></li>
+          <li><NavLink to={"scan"}><i className="fas fa-home"></i> QR Scanner </NavLink></li>
           <li><NavLink to={"/"}><i className="fas fa-home"></i> Dashboard</NavLink></li>
           <li className="login-item">
             <NavLink to={"login"}>

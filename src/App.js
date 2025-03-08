@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Home from './pages/Home';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import StudentHistory from './pages/StudentHistory';
+import CreateTimetable from './pages/Admin/CreateTimetable';
 import { fetchUsers } from './api'; // Ensure this path is correct
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="/student-history" element={<StudentHistory />} />
+                    <Route path="/admin/create-timetable" element={<CreateTimetable />} />
                 </Routes>
             </div>
         </Router>

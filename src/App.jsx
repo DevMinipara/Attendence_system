@@ -11,6 +11,7 @@ import Faculty from "./pages/Faculty/Faculty";
 import Student from "./pages/Student/Student";
 import StudentDashboard from "./pages/Student/Dashboard";
 import FacultyDashboard from "./pages/Faculty/FacultyDashboard";
+import CreateTimetable from './pages/Admin/CreateTimetable';
 
 
 
@@ -29,7 +30,7 @@ const App = () => {
         <Route path="/AdminDashboard" element={<AdminDashboard/>} /> 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-       
+        <Route path="/admin/create-timetable" element={<CreateTimetable />} />
       </Routes>
     </>
   );

@@ -1,25 +1,61 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./Login.css";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("student"); // Default user type
+  const [formData, setFormData] = useState({
+    enrollmentNo: "",
+    password: "",
+    userType: "student"
+  });
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const loginBtn = () => {
-    if (!email || !password) {
-      alert("Please fill in all fields");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    // Validation
+    if (!formData.enrollmentNo || !formData.password) {
+      setError("Please fill in all fields");
       return;
     }
 
-    // Navigate based on user type
-    if (userType === "student") {
-      navigate('/StudentDashboard');
-    } else if (userType === "faculty") {
-      navigate('/FacultyDashboard');
-    } else if (userType === "admin") {
-      navigate('/AdminDashboard');
+    try {
+      const response = await axios.post('http://localhost:5000/login', formData);
+      
+      if (response.data.success) {
+        // Store user data in localStorage or context if needed
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        
+        // Navigate based on user type
+        switch (formData.userType) {
+          case "student":
+            navigate('/StudentDashboard');
+            break;
+          case "faculty":
+            navigate('/FacultyDashboard');
+            break;
+          case "admin":
+            navigate('/AdminDashboard');
+            break;
+          default:
+            navigate('/');
+        }
+      } else {
+        setError(response.data.message || "Login failed");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "An error occurred during login");
     }
   };
 
@@ -27,33 +63,40 @@ function Login() {
     navigate('/register');
   };
 
-  const handleUserTypeChange = (e) => {
-    setUserType(e.target.value);
+  const handleForgotPassword = () => {
+    navigate('/forgot-password');
   };
 
   return (
-    <div className="login-page">
-      <div className="login-container">
+    <div className="login-container">
+      <div className="login-box">
         <div className="login-left">
           <div className="login-header">
             <h2>Welcome Back!</h2>
-            <p>Please login to access your account</p>
+            <p>Please login to continue</p>
           </div>
-          <form className="login-form">
+          
+          <form onSubmit={handleSubmit} className="login-form">
+            {error && <div className="error-message">{error}</div>}
+            
             <div className="form-group">
               <label>
-                <i className="fas fa-envelope"></i>
-                <span>Email</span>
+                <i className="fas fa-id-card"></i>
+                <span>Enrollment Number</span>
               </label>
               <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                name="enrollmentNo"
+                placeholder="Enter your enrollment number"
+                value={formData.enrollmentNo}
+                onChange={handleChange}
+                maxLength="8"
+                pattern="[0-9]{8}"
+                title="Please enter a valid 8-digit enrollment number"
                 required
-                style={{ overflow: 'hidden', resize: 'none' }}
               />
             </div>
+
             <div className="form-group">
               <label>
                 <i className="fas fa-lock"></i>
@@ -61,17 +104,22 @@ function Login() {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleChange}
                 required
-                style={{ overflow: 'hidden', resize: 'none' }}
               />
-              <span className="forgot-password">Forgot Password?</span>
+              <button 
+                type="button" 
+                className="forgot-password-btn" 
+                onClick={handleForgotPassword}
+              >
+                Forgot Password?
+              </button>
             </div>
 
-            {/* Radio buttons for user type */}
-            <div className="form-group radio-group" style={{ overflow: 'hidden' }}>
+            <div className="form-group radio-group">
               <label className="radio-label">Login as:</label>
               <div className="radio-options">
                 <label className="radio-option">
@@ -79,49 +127,51 @@ function Login() {
                     type="radio"
                     name="userType"
                     value="student"
-                    checked={userType === "student"}
-                    onChange={handleUserTypeChange}
+                    checked={formData.userType === "student"}
+                    onChange={handleChange}
                   />
-                  <span>Student</span>
+                  Student
                 </label>
                 <label className="radio-option">
                   <input
                     type="radio"
                     name="userType"
                     value="faculty"
-                    checked={userType === "faculty"}
-                    onChange={handleUserTypeChange}
+                    checked={formData.userType === "faculty"}
+                    onChange={handleChange}
                   />
-                  <span>Faculty</span>
+                  Faculty
                 </label>
                 <label className="radio-option">
                   <input
                     type="radio"
                     name="userType"
                     value="admin"
-                    checked={userType === "admin"}
-                    onChange={handleUserTypeChange}
+                    checked={formData.userType === "admin"}
+                    onChange={handleChange}
                   />
-                  <span>Admin</span>
+                  Admin
                 </label>
               </div>
             </div>
 
-            <button type="button" onClick={loginBtn} className="login-btn">
+            <button type="submit" className="login-btn">
               <span>Login Now</span>
               <i className="fas fa-arrow-right"></i>
             </button>
           </form>
-          <div className="login-footer" style={{ textAlign: 'center' }}>
-            <p>Don't have an account?</p>
+
+          <div className="login-footer">
+            <p>Don&apos;t have an account?</p>
             <button onClick={handleRegister} className="register-btn">
               Create Account
             </button>
           </div>
         </div>
+
         <div className="login-right">
           <div className="login-image">
-            <img src="/path-to-your-image.svg" alt="Login" />
+            <img src="/images/login-illustration.svg" alt="Login" />
             <h3>AttendEase</h3>
             <p>Smart Attendance Management System</p>
           </div>

@@ -5,12 +5,9 @@ const Home = () => {
   const navigate = useNavigate()
 
   const handleGetStarted = () => {
-    navigate('/StudentDashboard')
-  }
-
-  const handleSignUp = () => {
     navigate('register')
   }
+
   return (
     <>
       <div className="bgimage">
@@ -73,8 +70,6 @@ const Home = () => {
           data backup & recovery</b> make it a <b>reliable, scalable, and secure
           solution</b> for educational institutions of all sizes.
         </p>
-        
-        <button onClick={handleSignUp}>Sign Up</button>
       </div>
       <footer className="footer">
         <div className="footer-content">
@@ -100,17 +95,17 @@ const Home = () => {
           <div className="footer-section">
             <h3>Follow Us</h3>
             <div className="social-links">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <i className="fab fa-facebook-f"></i>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <img src="/images/facebook.png" alt="Facebook" className="social-logo" />
               </a>
-              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <i className="fab fa-twitter"></i>
+              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                <img src="/images/twitter.png" alt="Twitter" className="social-logo" />
               </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <i className="fab fa-instagram"></i>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <img src="/images/instagram.png" alt="Instagram" className="social-logo" />
               </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <i className="fab fa-linkedin-in"></i>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                <img src="/images/linkedIn.png" alt="LinkedIn" className="social-logo" />
               </a>
             </div>
           </div>

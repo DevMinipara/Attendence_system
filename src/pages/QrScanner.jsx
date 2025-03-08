@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import  { useEffect, useRef } from 'react';
 import QrScanner from 'qr-scanner'; // Make sure to install qr-scanner package
 
 const QrScannerPage = () => {
