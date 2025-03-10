@@ -13,6 +13,9 @@ const Scan = () => {
         height: 250,
       },
       fps: 5,
+      rememberLastUsedCamera: true,
+      showTorchButtonIfSupported: true,
+      supportedScanTypes: [],
     });
 
     scanner.render(success, error);

@@ -144,25 +144,20 @@
   }
 
   .status-badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.875rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
     font-weight: 500;
-    text-align: center;
-    display: inline-block;
-    min-width: 80px;
   }
 
   .status-badge.present {
     background-color: #e8f5e9;
     color: #2e7d32;
-    border: 1px solid #a5d6a7;
   }
 
   .status-badge.absent {
     background-color: #ffebee;
     color: #c62828;
-    border: 1px solid #ef9a9a;
   }
 
   @media (max-width: 768px) {
@@ -267,25 +262,78 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
   }
 
-  .back-btn {
-    background: #f0f2f5;
-    color: #333;
+  .history-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .mark-attendance-btn {
+    background-color: #2196F3;
+    color: white;
     border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
+    gap: 8px;
   }
 
-  .back-btn:hover {
-    background: #e4e6e9;
-    transform: translateY(-2px);
+  .mark-attendance-btn:hover {
+    background-color: #1976D2;
+  }
+
+  .single-student-attendance {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .attendance-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .attendance-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+  }
+
+  .attendance-status p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  .history-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
   }
 
   @media (max-width: 768px) {
@@ -304,4 +352,126 @@
       padding: 0.4rem 0.8rem;
       font-size: 0.9rem;
     }
+  }
+
+  .subject-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .subject-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .subject-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .subject-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .manual-attendance {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  .attendance-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .present-btn, .absent-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .present-btn {
+    background: #4CAF50;
+    color: white;
+  }
+
+  .absent-btn {
+    background: #f44336;
+    color: white;
+  }
+
+  .close-manual-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .attendance-btn {
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+  }
+
+  .attendance-btn:first-child {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-color: #2e7d32;
+  }
+
+  .attendance-btn:last-child {
+    background-color: #ffebee;
+    color: #c62828;
+    border-color: #c62828;
+  }
+
+  .attendance-btn.active {
+    color: white;
+  }
+
+  .attendance-btn:first-child.active {
+    background-color: #2e7d32;
+  }
+
+  .attendance-btn:last-child.active {
+    background-color: #c62828;
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+
+  .status-badge.present {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .status-badge.absent {
+    background-color: #ffebee;
+    color: #c62828;
   }
