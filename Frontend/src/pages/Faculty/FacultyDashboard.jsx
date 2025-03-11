@@ -54,6 +54,80 @@ const FacultyDashboard = () => {
   // Add new state for tracking current attendance status
   const [attendanceStatus, setAttendanceStatus] = useState({});
 
+  // Add new state for timetable
+  const [showTimetable, setShowTimetable] = useState(false);
+  
+  // Sample timetable data - in real app, this would come from your backend
+  const [timetable] = useState([
+    {
+      day: "Monday",
+      schedule: [
+        {
+          course: "BCA",
+          semester: 4,
+          subject: "Data Structures",
+          time: "10:00 AM - 11:00 AM",
+          room: "Lab 1"
+        },
+        {
+          course: "MSCIT",
+          semester: 2,
+          subject: "Database Management",
+          time: "11:00 AM - 12:00 PM",
+          room: "Room 201"
+        }
+      ]
+    },
+    {
+      day: "Tuesday",
+      schedule: [
+        {
+          course: "McA",
+          semester: 3,
+          subject: "Python Programming",
+          time: "09:00 AM - 10:00 AM",
+          room: "Lab 2"
+        }
+      ]
+    },
+    {
+      day: "Wednesday",
+      schedule: [
+        {
+          course: "BCA",
+          semester: 4,
+          subject: "Data Structures",
+          time: "10:00 AM - 11:00 AM",
+          room: "Lab 1"
+        }
+      ]
+    },
+    {
+      day: "Thursday",
+      schedule: [
+        {
+          course: "MSCIT",
+          semester: 2,
+          subject: "Database Management",
+          time: "02:00 PM - 03:00 PM",
+          room: "Room 201"
+        }
+      ]
+    },
+    {
+      day: "Friday",
+      schedule: [
+        {
+          course: "McA",
+          semester: 3,
+          subject: "Python Programming",
+          time: "11:00 AM - 12:00 PM",
+          room: "Lab 2"
+        }
+      ]
+    }
+  ]);
+
   useEffect(() => {
     // Set subjects based on selected course
     if (selectedCourse === "MBA") {
@@ -286,6 +360,52 @@ const FacultyDashboard = () => {
     </div>
   );
 
+  // Add timetable render function
+  const renderTimetable = () => (
+    <div className="timetable-modal">
+      <div className="timetable-content">
+        <div className="timetable-header">
+          <h2>Weekly Schedule - {facultyName}</h2>
+          <button 
+            className="close-btn"
+            onClick={() => setShowTimetable(false)}
+          >
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div className="timetable-body">
+          {timetable.map((day, index) => (
+            <div key={index} className="day-schedule">
+              <h3 className="day-header">{day.day}</h3>
+              <div className="schedule-cards">
+                {day.schedule.map((session, sessionIndex) => (
+                  <div key={sessionIndex} className="schedule-card">
+                    <div className="time-slot">
+                      <i className="far fa-clock"></i>
+                      {session.time}
+                    </div>
+                    <div className="schedule-details">
+                      <h4>{session.subject}</h4>
+                      <p>
+                        <span className="course-info">
+                          {session.course} - Semester {session.semester}
+                        </span>
+                        <span className="room-info">
+                          <i className="fas fa-door-open"></i> {session.room}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="dashboard-container">
       {/* Navigation Bar */}
@@ -354,6 +474,9 @@ const FacultyDashboard = () => {
             </button>
             <button onClick={handleShowHistory} className="history-btn">
               <i className="fas fa-history"></i> Show Student History
+            </button>
+            <button onClick={() => setShowTimetable(true)} className="timetable-btn">
+              <i className="fas fa-calendar-alt"></i> View Timetable
             </button>
           </div>
         </div>
@@ -465,6 +588,8 @@ const FacultyDashboard = () => {
             )}
           </div>
         )}
+
+        {showTimetable && renderTimetable()}
       </div>
     </div>
   );
