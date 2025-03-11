@@ -82,7 +82,7 @@ const FacultyDashboard = () => {
       day: "Tuesday",
       schedule: [
         {
-          course: "McA",
+          course: "MCA",
           semester: 3,
           subject: "Python Programming",
           time: "09:00 AM - 10:00 AM",
@@ -360,7 +360,7 @@ const FacultyDashboard = () => {
     </div>
   );
 
-  // Add timetable render function
+  // Modified timetable render function with table format
   const renderTimetable = () => (
     <div className="timetable-modal">
       <div className="timetable-content">
@@ -375,32 +375,39 @@ const FacultyDashboard = () => {
         </div>
 
         <div className="timetable-body">
-          {timetable.map((day, index) => (
-            <div key={index} className="day-schedule">
-              <h3 className="day-header">{day.day}</h3>
-              <div className="schedule-cards">
-                {day.schedule.map((session, sessionIndex) => (
-                  <div key={sessionIndex} className="schedule-card">
-                    <div className="time-slot">
-                      <i className="far fa-clock"></i>
-                      {session.time}
-                    </div>
-                    <div className="schedule-details">
-                      <h4>{session.subject}</h4>
-                      <p>
-                        <span className="course-info">
-                          {session.course} - Semester {session.semester}
-                        </span>
-                        <span className="room-info">
-                          <i className="fas fa-door-open"></i> {session.room}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+          <table className="timetable-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Subject</th>
+                <th>Course</th>
+                <th>Semester</th>
+                <th>Room</th>
+              </tr>
+            </thead>
+            <tbody>
+              {timetable.map((day) => (
+                day.schedule.map((session, sessionIndex) => (
+                  <tr key={`${day.day}-${sessionIndex}`}>
+                    {sessionIndex === 0 && (
+                      <td 
+                        rowSpan={day.schedule.length} 
+                        className="day-cell"
+                      >
+                        {day.day}
+                      </td>
+                    )}
+                    <td>{session.time}</td>
+                    <td>{session.subject}</td>
+                    <td>{session.course}</td>
+                    <td>{session.semester}</td>
+                    <td>{session.room}</td>
+                  </tr>
+                ))
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
